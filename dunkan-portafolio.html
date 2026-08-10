@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dunkan Hernández Reyes — Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#0A0708;
+    --wine:#4A0E17;
+    --wine-bright:#8C1F2B;
+    --ink:#F3ECE6;
+    --ink-soft:#C7B4AE;
+    --line:#3A1519;
+    --gold:#D1A13B;
+    --panel-grad:linear-gradient(165deg, var(--wine) 0%, #200A0D 55%, var(--void) 100%);
+    --tag-grad:linear-gradient(135deg, rgba(140,31,43,.55), rgba(10,7,8,.4));
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--void);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  .cv-grid{
+    display:grid;
+    grid-template-columns:280px 1fr;
+    border-left:1px solid var(--line);
+    border-right:1px solid var(--line);
+    min-height:100vh;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .sidebar{
+    background:var(--panel-grad);
+    border-right:1px solid var(--line);
+    padding:48px 28px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .sidebar-top .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+
+  .sidebar-top h1{
+    font-family:'Fraunces', serif;
+    font-size:32px;
+    font-weight:500;
+    line-height:1.1;
+    letter-spacing:-.01em;
+    margin-bottom:8px;
+  }
+
+  .sidebar-top .role{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+
+  .sidebar-top .role-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--gold);
+    margin-bottom:28px;
+  }
+
+  .sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    margin-bottom:32px;
+  }
+
+  .sidebar nav a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:7px 0;
+    display:flex;
+    gap:10px;
+  }
+  .sidebar nav a:hover{ color:var(--gold); }
+  .sidebar nav a .n{ color:var(--gold); }
+
+  .sidebar-links{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .sidebar-links a{
+    font-size:14px;
+    text-decoration:none;
+    padding-bottom:2px;
+    border-bottom:1px solid var(--line);
+    width:fit-content;
+  }
+  .sidebar-links a:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .sidebar-foot{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+
+  .main{ padding:64px 56px 0; }
+
+  section{
+    padding-bottom:72px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:72px;
+    scroll-margin-top:24px;
+  }
+  section:last-of-type{ border-bottom:none; }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:28px;
+  }
+
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:.05em;
+  }
+
+  .section-head h2{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    font-weight:500;
+  }
+
+  #about p{
+    max-width:62ch;
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  #about p strong{ color:var(--ink); font-weight:600; }
+
+  .stack-groups{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+
+  .stack-group h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-bottom:12px;
+  }
+
+  .pill-row{ display:flex; flex-wrap:wrap; gap:8px; }
+
+  .pill{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    padding:5px 10px;
+    background:var(--tag-grad);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--ink);
+  }
+
+  .project{
+    display:grid;
+    grid-template-columns:64px 1fr;
+    gap:20px;
+    padding:28px 24px;
+    margin:0 -24px 4px;
+    background:var(--panel-grad);
+    border-radius:var(--radius);
+    border-top:1px solid var(--line);
+  }
+  .project:first-of-type{ border-top:1px solid var(--line); }
+
+  .project .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--gold);
+    padding-top:4px;
+  }
+
+  .project h3{
+    font-family:'Fraunces', serif;
+    font-size:21px;
+    font-weight:500;
+    margin-bottom:6px;
+  }
+
+  .project .desc{
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:64ch;
+    margin-bottom:14px;
+  }
+
+  .project .meta-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  .project .tech{ display:flex; gap:8px; flex-wrap:wrap; }
+
+  .project .tech span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--gold);
+    background:rgba(140,31,43,.4);
+    border:1px solid var(--line);
+    padding:3px 8px;
+    border-radius:var(--radius);
+  }
+
+  .project .proj-links{ display:flex; gap:16px; }
+
+  .project .proj-links a{
+    font-size:13.5px;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:1px;
+  }
+  .project .proj-links a:hover{ color:var(--gold); border-color:var(--gold); }
+
+  .timeline-item{
+    display:grid;
+    grid-template-columns:150px 1fr;
+    gap:20px;
+    padding:20px 24px;
+    margin:0 -24px;
+    background:var(--panel-grad);
+    border-radius:var(--radius);
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:first-of-type{ border-top:1px solid var(--line); }
+
+  .timeline-item .when{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding-top:3px;
+  }
+
+  .timeline-item h3{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    font-weight:500;
+    margin-bottom:4px;
+  }
+
+  .timeline-item .org{ font-size:13px; color:var(--gold); margin-bottom:8px; }
+  .timeline-item p{ color:var(--ink-soft); font-size:14.5px; max-width:60ch; }
+
+  #contact{ margin-bottom:0; padding-bottom:64px; }
+
+  .contact-block{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+
+  .contact-block h2{
+    font-family:'Fraunces', serif;
+    font-size:32px;
+    font-weight:500;
+    max-width:14ch;
+    line-height:1.15;
+  }
+
+  .contact-cta{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+
+  .contact-cta a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    text-decoration:none;
+    color:var(--ink-soft);
+  }
+  .contact-cta a:hover{ color:var(--gold); }
+
+  .contact-cta a.primary{
+    color:var(--void);
+    background:var(--gold);
+    padding:11px 18px;
+    border-radius:var(--radius);
+  }
+  .contact-cta a.primary:hover{ background:var(--ink); color:var(--void); }
+
+  footer.status-bar{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding:14px 56px;
+    display:flex;
+    justify-content:space-between;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  footer.status-bar .prompt::before{ content:"$ "; color:var(--gold); }
+
+  .note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+    background:var(--tag-grad);
+    border:1px dashed var(--line);
+    padding:8px 12px;
+    border-radius:var(--radius);
+    margin-top:10px;
+    display:inline-block;
+  }
+
+  @media (max-width: 880px){
+    .cv-grid{ grid-template-columns:1fr; border-left:none; border-right:none; }
+    .sidebar{ position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); }
+    .main{ padding:48px 24px 0; }
+    .stack-groups{ grid-template-columns:1fr 1fr; }
+    .project{ grid-template-columns:32px 1fr; }
+    .timeline-item{ grid-template-columns:1fr; }
+    .contact-block{ flex-direction:column; align-items:flex-start; }
+    .contact-cta{ align-items:flex-start; }
+    footer.status-bar{ flex-direction:column; gap:6px; padding:14px 24px; }
+  }
+  @media (max-width:560px){ .stack-groups{ grid-template-columns:1fr; } }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<div class="cv-grid">
+
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="eyebrow">Currículum / Portafolio</div>
+      <h1>Dunkan Hernández Reyes</h1>
+      <div class="role">Estudiante de Ingeniería en Informática</div>
+      <div class="role-sub">Duoc UC — en curso</div>
+
+      <nav>
+        <a href="#about"><span class="n">01</span> Sobre mí</a>
+        <a href="#stack"><span class="n">02</span> Stack</a>
+        <a href="#projects"><span class="n">03</span> Proyectos</a>
+        <a href="#education"><span class="n">04</span> Educación</a>
+        <a href="#contact"><span class="n">05</span> Contacto</a>
+      </nav>
+
+      <div class="sidebar-links">
+        <a href="https://github.com/Aknudans" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/dunkan-hern%C3%A1ndez-reyes-7b8575428/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="docs/Curriculum.pdf" target="_blank" rel="noopener">Descargar CV (PDF) ↗</a>
+      </div>
+    </div>
+
+    <div class="sidebar-foot">
+      Chile<br>
+      Disponible para práctica / primer empleo
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <section id="about">
+      <div class="section-head"><span class="tag">01</span><h2>Sobre mí</h2></div>
+      <p><strong>Estudiante de Ingeniería en Informática</strong> en Duoc UC, enfocado en construir herramientas que automatizan trabajo manual y repetitivo: procesamiento de PDFs, integración con APIs internas de empresas y pequeñas apps web de escritorio.</p>
+      <p>La mayoría de mis proyectos nacen de un problema real — un proceso lento en Excel, una descarga manual de documentos, un control de asistencia que nadie revisaba — y los resuelvo de punta a punta: backend en Python, interfaz web simple, y algo de análisis de datos cuando el problema lo pide.</p>
+    </section>
+
+    <section id="stack">
+      <div class="section-head"><span class="tag">02</span><h2>Stack</h2></div>
+      <div class="stack-groups">
+        <div class="stack-group">
+          <h3>Lenguajes</h3>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">SQL</span>
+            <span class="pill">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <h3>Frameworks / Librerías</h3>
+          <div class="pill-row">
+            <span class="pill">Flask</span>
+            <span class="pill">React</span>
+            <span class="pill">Tailwind CSS</span>
+            <span class="pill">Vite</span>
+          </div>
+        </div>
+        <div class="stack-group">
+          <h3>Herramientas</h3>
+          <div class="pill-row">
+            <span class="pill">Git / GitHub</span>
+            <span class="pill">Jupyter</span>
+            <span class="pill">APIs REST</span>
+            <span class="pill">Ghostscript / qpdf</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head"><span class="tag">03</span><h2>Proyectos</h2></div>
+
+      <div class="project">
+        <div class="idx">P.1</div>
+        <div>
+          <h3>Talana Docs Downloader</h3>
+          <p class="desc">Aplicación web en Flask que se conecta a la API de RRHH de Talana para buscar personas por RUT o nombre y descargar en lote sus documentos firmados, en vez de hacerlo uno por uno a mano. Soporta búsqueda masiva pegando listas desde Excel, filtra automáticamente qué documentos corresponden, arma un ZIP organizado por persona y entrega un resumen descargable de los casos que fallaron. Se puede instalar como app de escritorio desde el navegador.</p>
+          <div class="meta-row">
+            <div class="tech">
+              <span>Python</span><span>Flask</span><span>API REST</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Aknudans/TalanaDocsDownloader" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="idx">P.2</div>
+        <div>
+          <h3>OptiPDF Merger</h3>
+          <p class="desc">Utilidad que fusiona múltiples PDFs en un único documento y lo comprime de forma agresiva sin perder legibilidad, pensada para cumplir límites estrictos de tamaño de archivo. Corre un pipeline de tres etapas — fusión con pypdf, optimización estructural con qpdf y compresión por fases con Ghostscript — y puede usarse desde línea de comandos o desde una interfaz web local.</p>
+          <div class="meta-row">
+            <div class="tech">
+              <span>Python</span><span>qpdf</span><span>Ghostscript</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Aknudans/OptiPDF-Merger" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="idx">P.3</div>
+        <div>
+          <h3>Fraud Detection Project</h3>
+          <p class="desc">Notebook de análisis y modelado orientado a detectar transacciones fraudulentas a partir de datos históricos, explorando el problema típico de clases desbalanceadas en detección de fraude.</p>
+          <div class="meta-row">
+            <div class="tech">
+              <span>Python</span><span>Jupyter Notebook</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Aknudans/fraud-detection-project" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="idx">P.4</div>
+        <div>
+          <h3>Extractor Híbrido de PDF</h3>
+          <p class="desc">Herramienta en Python para extraer contenido de archivos PDF combinando distintas estrategias de extracción, útil para documentos donde el texto plano no siempre es suficiente.</p>
+          <div class="meta-row">
+            <div class="tech">
+              <span>Python</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Aknudans/extractor-hibrido-pdf" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="idx">P.5</div>
+        <div>
+          <h3>Cpiel Reloj Control</h3>
+          <p class="desc">Sistema de notificaciones para un reloj control de asistencia: revisa marcajes recientes, descubre el esquema de la base de datos automáticamente y avisa por correo y por popup en escritorio cuando corresponde, para no tener que revisar la asistencia a mano.</p>
+          <div class="meta-row">
+            <div class="tech">
+              <span>Python</span><span>PowerShell</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/Aknudans/CpielRelojControl" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="education">
+      <div class="section-head"><span class="tag">04</span><h2>Educación</h2></div>
+
+      <div class="timeline-item">
+        <div class="when">En curso</div>
+        <div>
+          <h3>Ingeniería en Informática</h3>
+          <div class="org">Duoc UC</div>
+          <p>Formación enfocada en desarrollo de software, bases de datos y arquitectura de aplicaciones. La mayoría de los proyectos de este portafolio nacieron en paralelo a la carrera, resolviendo problemas reales de automatización.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">Certificación</div>
+        <div>
+          <h3>TOEIC Bridge — Inglés</h3>
+          <div class="org">ETS (TOEIC)</div>
+          <p>Puntaje total: 740.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-block">
+        <h2>¿Conversamos?</h2>
+        <div class="contact-cta">
+          <a href="mailto:Aknu.hernandez@proton.me" class="primary">Aknu.hernandez@proton.me</a>
+          <a href="https://github.com/Aknudans" target="_blank" rel="noopener">github.com/Aknudans</a>
+          <a href="https://www.linkedin.com/in/dunkan-hern%C3%A1ndez-reyes-7b8575428/" target="_blank" rel="noopener">linkedin.com/in/dunkan-hernández-reyes</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="status-bar">
+  <span class="prompt">whoami — Dunkan Hernández Reyes, Ing. en Informática (Duoc UC)</span>
+  <span>Chile · Última actualización: 2026</span>
+</footer>
+
+</body>
+</html>
