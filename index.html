@@ -350,7 +350,9 @@
     border-radius:var(--radius);
     margin-top:10px;
     display:inline-block;
+    text-decoration:none;
   }
+  a.note:hover{ color:var(--gold); border-color:var(--gold); }
 
   @media (max-width: 880px){
     .cv-grid{ grid-template-columns:1fr; border-left:none; border-right:none; }
@@ -451,7 +453,7 @@
         <div>
           <h3>Talana Docs Downloader</h3>
           <p class="desc">Aplicación web en Flask que se conecta a la API de RRHH de Talana para buscar personas por RUT o nombre y descargar en lote sus documentos firmados, en vez de hacerlo uno por uno a mano. Soporta búsqueda masiva pegando listas desde Excel, filtra automáticamente qué documentos corresponden, arma un ZIP organizado por persona y entrega un resumen descargable de los casos que fallaron. Se puede instalar como app de escritorio desde el navegador.</p>
-          <span class="note">Desarrollado para Grupo Colchagua</span>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>Flask</span><span>API REST</span>
@@ -468,7 +470,7 @@
         <div>
           <h3>OptiPDF Merger</h3>
           <p class="desc">Utilidad que fusiona múltiples PDFs en un único documento y lo comprime de forma agresiva sin perder legibilidad, pensada para cumplir límites estrictos de tamaño de archivo. Corre un pipeline de tres etapas — fusión con pypdf, optimización estructural con qpdf y compresión por fases con Ghostscript — y puede usarse desde línea de comandos o desde una interfaz web local.</p>
-          <span class="note">Desarrollado para Grupo Colchagua</span>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>qpdf</span><span>Ghostscript</span>
@@ -485,7 +487,7 @@
         <div>
           <h3>Bot ShiftLaboral</h3>
           <p class="desc">Bot de automatización (RPA) que carga colaboradores y sus documentos en ShiftLaboral, un sistema externo sin API pública ni carga masiva. A partir de un Excel, compara los datos contra lo ya registrado, crea o edita colaboradores corrigiendo solo los campos que difieren, y sube sus documentos detectando el tipo de archivo automáticamente. Al finalizar genera un reporte Excel coloreado con el detalle de cada caso. Corre sobre una sesión de Chrome iniciada manualmente, sin manejar contraseñas.</p>
-          <span class="note">Desarrollado para Grupo Colchagua</span>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>Playwright</span><span>RPA</span>
@@ -534,6 +536,7 @@
         <div>
           <h3>Cpiel Reloj Control</h3>
           <p class="desc">Sistema de notificaciones para un reloj control de asistencia: revisa marcajes recientes, descubre el esquema de la base de datos automáticamente y avisa por correo y por popup en escritorio cuando corresponde, para no tener que revisar la asistencia a mano.</p>
+          <a class="note" href="https://cpiel.cl/" target="_blank" rel="noopener">Desarrollado para Clínica Dermatológica Piel ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>PowerShell</span>
