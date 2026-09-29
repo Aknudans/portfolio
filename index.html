@@ -369,6 +369,26 @@
   @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  .lang-switch{
+    display:flex;
+    gap:6px;
+    margin-bottom:24px;
+  }
+
+  .lang-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:.05em;
+    color:var(--ink-soft);
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:5px 10px;
+    cursor:pointer;
+  }
+  .lang-btn:hover{ color:var(--gold); border-color:var(--gold); }
+  .lang-btn.active{ color:var(--void); background:var(--gold); border-color:var(--gold); }
 </style>
 </head>
 <body>
@@ -377,45 +397,50 @@
 
   <aside class="sidebar">
     <div class="sidebar-top">
-      <div class="eyebrow">Currículum / Portafolio</div>
+      <div class="eyebrow" data-i18n="eyebrow">Currículum / Portafolio</div>
       <h1>Dunkan Hernández Reyes</h1>
-      <div class="role">Estudiante de Ingeniería en Informática</div>
-      <div class="role-sub">Duoc UC — en curso</div>
+      <div class="role" data-i18n="role">Estudiante de Ingeniería en Informática</div>
+      <div class="role-sub" data-i18n="role-sub">Duoc UC — en curso</div>
+
+      <div class="lang-switch" role="group" aria-label="Idioma / Language">
+        <button type="button" class="lang-btn active" data-lang="es">ES</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
 
       <nav>
-        <a href="#about"><span class="n">01</span> Sobre mí</a>
-        <a href="#stack"><span class="n">02</span> Stack</a>
-        <a href="#projects"><span class="n">03</span> Proyectos</a>
-        <a href="#experience"><span class="n">04</span> Experiencia</a>
-        <a href="#education"><span class="n">05</span> Educación</a>
-        <a href="#contact"><span class="n">06</span> Contacto</a>
+        <a href="#about"><span class="n">01</span> <span data-i18n="about">Sobre mí</span></a>
+        <a href="#stack"><span class="n">02</span> <span data-i18n="stack">Stack</span></a>
+        <a href="#projects"><span class="n">03</span> <span data-i18n="projects">Proyectos</span></a>
+        <a href="#experience"><span class="n">04</span> <span data-i18n="experience">Experiencia</span></a>
+        <a href="#education"><span class="n">05</span> <span data-i18n="education">Educación</span></a>
+        <a href="#contact"><span class="n">06</span> <span data-i18n="contact">Contacto</span></a>
       </nav>
 
       <div class="sidebar-links">
         <a href="https://github.com/Aknudans" target="_blank" rel="noopener">GitHub ↗</a>
-        <a href="docs/Curriculum.pdf" target="_blank" rel="noopener">Descargar CV (PDF) ↗</a>
+        <a href="docs/Curriculum.pdf" target="_blank" rel="noopener" data-i18n="cv-link">Descargar CV (PDF) ↗</a>
       </div>
     </div>
 
     <div class="sidebar-foot">
       Chile<br>
-      Disponible para práctica / primer empleo
+      <span data-i18n="availability">Disponible para práctica / primer empleo</span>
     </div>
   </aside>
 
   <main class="main">
 
     <section id="about">
-      <div class="section-head"><span class="tag">01</span><h2>Sobre mí</h2></div>
-      <p><strong>Estudiante de Ingeniería en Informática</strong> en Duoc UC, enfocado en construir herramientas que automatizan trabajo manual y repetitivo: procesamiento de PDFs, integración con APIs internas de empresas y pequeñas apps web de escritorio.</p>
-      <p>La mayoría de mis proyectos nacen de un problema real — un proceso lento en Excel, una descarga manual de documentos, un control de asistencia que nadie revisaba — y los resuelvo de punta a punta: backend en Python, interfaz web simple, y algo de análisis de datos cuando el problema lo pide.</p>
+      <div class="section-head"><span class="tag">01</span><h2 data-i18n="about">Sobre mí</h2></div>
+      <p data-i18n="about-p1"><strong>Estudiante de Ingeniería en Informática</strong> en Duoc UC, enfocado en construir herramientas que automatizan trabajo manual y repetitivo: procesamiento de PDFs, integración con APIs internas de empresas y pequeñas apps web de escritorio.</p>
+      <p data-i18n="about-p2">La mayoría de mis proyectos nacen de un problema real — un proceso lento en Excel, una descarga manual de documentos, un control de asistencia que nadie revisaba — y los resuelvo de punta a punta: backend en Python, interfaz web simple, y algo de análisis de datos cuando el problema lo pide.</p>
     </section>
 
     <section id="stack">
-      <div class="section-head"><span class="tag">02</span><h2>Stack</h2></div>
+      <div class="section-head"><span class="tag">02</span><h2 data-i18n="stack">Stack</h2></div>
       <div class="stack-groups">
         <div class="stack-group">
-          <h3>Lenguajes</h3>
+          <h3 data-i18n="stack-languages">Lenguajes</h3>
           <div class="pill-row">
             <span class="pill">Python</span>
             <span class="pill">JavaScript</span>
@@ -424,7 +449,7 @@
           </div>
         </div>
         <div class="stack-group">
-          <h3>Frameworks / Librerías</h3>
+          <h3 data-i18n="stack-frameworks">Frameworks / Librerías</h3>
           <div class="pill-row">
             <span class="pill">Flask</span>
             <span class="pill">React</span>
@@ -433,11 +458,11 @@
           </div>
         </div>
         <div class="stack-group">
-          <h3>Herramientas</h3>
+          <h3 data-i18n="stack-tools">Herramientas</h3>
           <div class="pill-row">
             <span class="pill">Git / GitHub</span>
             <span class="pill">Jupyter</span>
-            <span class="pill">APIs REST</span>
+            <span class="pill" data-i18n="pill-rest-apis">APIs REST</span>
             <span class="pill">Ghostscript / qpdf</span>
           </div>
         </div>
@@ -445,17 +470,17 @@
     </section>
 
     <section id="projects">
-      <div class="section-head"><span class="tag">03</span><h2>Proyectos</h2></div>
+      <div class="section-head"><span class="tag">03</span><h2 data-i18n="projects">Proyectos</h2></div>
 
       <div class="project">
         <div class="idx">P.1</div>
         <div>
           <h3>Talana Docs Downloader</h3>
-          <p class="desc">Aplicación web en Flask que se conecta a la API de RRHH de Talana para buscar personas por RUT o nombre y descargar en lote sus documentos firmados, en vez de hacerlo uno por uno a mano. Soporta búsqueda masiva pegando listas desde Excel, filtra automáticamente qué documentos corresponden, arma un ZIP organizado por persona y entrega un resumen descargable de los casos que fallaron. Se puede instalar como app de escritorio desde el navegador.</p>
-          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
+          <p class="desc" data-i18n="proj-talana-desc">Aplicación web en Flask que se conecta a la API de RRHH de Talana para buscar personas por RUT o nombre y descargar en lote sus documentos firmados, en vez de hacerlo uno por uno a mano. Soporta búsqueda masiva pegando listas desde Excel, filtra automáticamente qué documentos corresponden, arma un ZIP organizado por persona y entrega un resumen descargable de los casos que fallaron. Se puede instalar como app de escritorio desde el navegador.</p>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener" data-i18n="note-grupocolchagua">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
-              <span>Python</span><span>Flask</span><span>API REST</span>
+              <span>Python</span><span>Flask</span><span data-i18n="pill-rest-api">API REST</span>
             </div>
             <div class="proj-links">
               <a href="https://github.com/Aknudans/TalanaDocsDownloader" target="_blank" rel="noopener">GitHub ↗</a>
@@ -468,8 +493,8 @@
         <div class="idx">P.2</div>
         <div>
           <h3>OptiPDF Merger</h3>
-          <p class="desc">Utilidad que fusiona múltiples PDFs en un único documento y lo comprime de forma agresiva sin perder legibilidad, pensada para cumplir límites estrictos de tamaño de archivo. Corre un pipeline de tres etapas — fusión con pypdf, optimización estructural con qpdf y compresión por fases con Ghostscript — y puede usarse desde línea de comandos o desde una interfaz web local.</p>
-          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
+          <p class="desc" data-i18n="proj-optipdf-desc">Utilidad que fusiona múltiples PDFs en un único documento y lo comprime de forma agresiva sin perder legibilidad, pensada para cumplir límites estrictos de tamaño de archivo. Corre un pipeline de tres etapas — fusión con pypdf, optimización estructural con qpdf y compresión por fases con Ghostscript — y puede usarse desde línea de comandos o desde una interfaz web local.</p>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener" data-i18n="note-grupocolchagua">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>qpdf</span><span>Ghostscript</span>
@@ -485,8 +510,8 @@
         <div class="idx">P.3</div>
         <div>
           <h3>Bot ShiftLaboral</h3>
-          <p class="desc">Bot de automatización (RPA) que carga colaboradores y sus documentos en ShiftLaboral, un sistema externo sin API pública ni carga masiva. A partir de un Excel, compara los datos contra lo ya registrado, crea o edita colaboradores corrigiendo solo los campos que difieren, y sube sus documentos detectando el tipo de archivo automáticamente. Al finalizar genera un reporte Excel coloreado con el detalle de cada caso. Corre sobre una sesión de Chrome iniciada manualmente, sin manejar contraseñas.</p>
-          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener">Desarrollado para Grupo Colchagua ↗</a>
+          <p class="desc" data-i18n="proj-shiftbot-desc">Bot de automatización (RPA) que carga colaboradores y sus documentos en ShiftLaboral, un sistema externo sin API pública ni carga masiva. A partir de un Excel, compara los datos contra lo ya registrado, crea o edita colaboradores corrigiendo solo los campos que difieren, y sube sus documentos detectando el tipo de archivo automáticamente. Al finalizar genera un reporte Excel coloreado con el detalle de cada caso. Corre sobre una sesión de Chrome iniciada manualmente, sin manejar contraseñas.</p>
+          <a class="note" href="https://grupocolchagua.cl/" target="_blank" rel="noopener" data-i18n="note-grupocolchagua">Desarrollado para Grupo Colchagua ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>Playwright</span><span>RPA</span>
@@ -502,7 +527,7 @@
         <div class="idx">P.4</div>
         <div>
           <h3>Fraud Detection Project</h3>
-          <p class="desc">Notebook de análisis y modelado orientado a detectar transacciones fraudulentas a partir de datos históricos, explorando el problema típico de clases desbalanceadas en detección de fraude.</p>
+          <p class="desc" data-i18n="proj-fraud-desc">Notebook de análisis y modelado orientado a detectar transacciones fraudulentas a partir de datos históricos, explorando el problema típico de clases desbalanceadas en detección de fraude.</p>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>Jupyter Notebook</span>
@@ -517,8 +542,8 @@
       <div class="project">
         <div class="idx">P.5</div>
         <div>
-          <h3>Extractor Híbrido de PDF</h3>
-          <p class="desc">Herramienta en Python para extraer contenido de archivos PDF combinando distintas estrategias de extracción, útil para documentos donde el texto plano no siempre es suficiente.</p>
+          <h3 data-i18n="proj-extractor-title">Extractor Híbrido de PDF</h3>
+          <p class="desc" data-i18n="proj-extractor-desc">Herramienta en Python para extraer contenido de archivos PDF combinando distintas estrategias de extracción, útil para documentos donde el texto plano no siempre es suficiente.</p>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span>
@@ -533,9 +558,9 @@
       <div class="project">
         <div class="idx">P.6</div>
         <div>
-          <h3>Cpiel Reloj Control</h3>
-          <p class="desc">Sistema de notificaciones para un reloj control de asistencia: revisa marcajes recientes, descubre el esquema de la base de datos automáticamente y avisa por correo y por popup en escritorio cuando corresponde, para no tener que revisar la asistencia a mano.</p>
-          <a class="note" href="https://cpiel.cl/" target="_blank" rel="noopener">Desarrollado para Clínica Dermatológica Piel ↗</a>
+          <h3 data-i18n="proj-cpiel-title">Cpiel Reloj Control</h3>
+          <p class="desc" data-i18n="proj-cpiel-desc">Sistema de notificaciones para un reloj control de asistencia: revisa marcajes recientes, descubre el esquema de la base de datos automáticamente y avisa por correo y por popup en escritorio cuando corresponde, para no tener que revisar la asistencia a mano.</p>
+          <a class="note" href="https://cpiel.cl/" target="_blank" rel="noopener" data-i18n="note-cpiel">Desarrollado para Clínica Dermatológica Piel ↗</a>
           <div class="meta-row">
             <div class="tech">
               <span>Python</span><span>PowerShell</span>
@@ -550,61 +575,61 @@
     </section>
 
     <section id="experience">
-      <div class="section-head"><span class="tag">04</span><h2>Experiencia</h2></div>
+      <div class="section-head"><span class="tag">04</span><h2 data-i18n="experience">Experiencia</h2></div>
 
       <div class="timeline-item">
-        <div class="when">Ago. 2026 – Actual</div>
+        <div class="when" data-i18n="date-piel">Ago. 2026 – Actual</div>
         <div>
-          <h3>Desarrollador de Software (freelance)</h3>
+          <h3 data-i18n="title-piel">Desarrollador de Software (freelance)</h3>
           <div class="org">Clínica Dermatológica Piel</div>
-          <p>Desarrollo de un software a medida para la clínica, en paralelo a la práctica en Grupo Colchagua. Proyecto aún en desarrollo.</p>
+          <p data-i18n="desc-piel">Desarrollo de un software a medida para la clínica, en paralelo a la práctica en Grupo Colchagua. Proyecto aún en desarrollo.</p>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="when">Jul. 2026 – Sept. 2026</div>
+        <div class="when" data-i18n="date-gc">Jul. 2026 – Sept. 2026</div>
         <div>
-          <h3>Practicante</h3>
+          <h3 data-i18n="title-intern">Practicante</h3>
           <div class="org">Grupo Colchagua</div>
-          <p>Optimización y automatización de procesos manuales.</p>
+          <p data-i18n="desc-gc">Optimización y automatización de procesos manuales.</p>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="when">Ago. 2025 – Nov. 2025</div>
+        <div class="when" data-i18n="date-cf">Ago. 2025 – Nov. 2025</div>
         <div>
-          <h3>Auditor de Productos / Analista de Datos</h3>
+          <h3 data-i18n="title-cf">Auditor de Productos / Analista de Datos</h3>
           <div class="org">CrazyFamily</div>
-          <p>Diseño, extracción y automatización de reportes analíticos con información crítica para la toma de decisiones estratégicas. Optimización de procesos bajo estrictos acuerdos de nivel de servicio (48-72 horas), mejorando la eficiencia operativa a través del análisis continuo de incidencias y la comunicación interdepartamental.</p>
+          <p data-i18n="desc-cf">Diseño, extracción y automatización de reportes analíticos con información crítica para la toma de decisiones estratégicas. Optimización de procesos bajo estrictos acuerdos de nivel de servicio (48-72 horas), mejorando la eficiencia operativa a través del análisis continuo de incidencias y la comunicación interdepartamental.</p>
         </div>
       </div>
     </section>
 
     <section id="education">
-      <div class="section-head"><span class="tag">05</span><h2>Educación</h2></div>
+      <div class="section-head"><span class="tag">05</span><h2 data-i18n="education">Educación</h2></div>
 
       <div class="timeline-item">
-        <div class="when">En curso</div>
+        <div class="when" data-i18n="date-duoc">En curso</div>
         <div>
-          <h3>Ingeniería en Informática</h3>
+          <h3 data-i18n="title-duoc">Ingeniería en Informática</h3>
           <div class="org">Duoc UC</div>
-          <p>Formación enfocada en desarrollo de software, bases de datos y arquitectura de aplicaciones. La mayoría de los proyectos de este portafolio nacieron en paralelo a la carrera, resolviendo problemas reales de automatización.</p>
+          <p data-i18n="desc-duoc">Formación enfocada en desarrollo de software, bases de datos y arquitectura de aplicaciones. La mayoría de los proyectos de este portafolio nacieron en paralelo a la carrera, resolviendo problemas reales de automatización.</p>
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="when">Certificación</div>
+        <div class="when" data-i18n="date-toeic">Certificación</div>
         <div>
-          <h3>TOEIC Bridge — Inglés</h3>
+          <h3 data-i18n="title-toeic">TOEIC Bridge — Inglés</h3>
           <div class="org">ETS (TOEIC)</div>
-          <p>Puntaje total: 740.</p>
+          <p data-i18n="desc-toeic">Puntaje total: 740.</p>
         </div>
       </div>
     </section>
 
     <section id="contact">
       <div class="contact-block">
-        <h2>¿Conversamos?</h2>
+        <h2 data-i18n="contact-heading">¿Conversamos?</h2>
         <div class="contact-cta">
           <a href="mailto:Aknu.hernandez@proton.me" class="primary">Aknu.hernandez@proton.me</a>
           <a href="https://github.com/Aknudans" target="_blank" rel="noopener">github.com/Aknudans</a>
@@ -616,9 +641,142 @@
 </div>
 
 <footer class="status-bar">
-  <span class="prompt">whoami — Dunkan Hernández Reyes, Ing. en Informática (Duoc UC)</span>
-  <span>Chile · Última actualización: 2026</span>
+  <span class="prompt" data-i18n="footer-whoami">whoami — Dunkan Hernández Reyes, Ing. en Informática (Duoc UC)</span>
+  <span data-i18n="footer-updated">Chile · Última actualización: 2026</span>
 </footer>
+
+<script>
+(function(){
+  var translations = {
+    es: {
+      "eyebrow": "Currículum / Portafolio",
+      "role": "Estudiante de Ingeniería en Informática",
+      "role-sub": "Duoc UC — en curso",
+      "about": "Sobre mí",
+      "stack": "Stack",
+      "projects": "Proyectos",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "contact": "Contacto",
+      "cv-link": "Descargar CV (PDF) ↗",
+      "availability": "Disponible para práctica / primer empleo",
+      "about-p1": "<strong>Estudiante de Ingeniería en Informática</strong> en Duoc UC, enfocado en construir herramientas que automatizan trabajo manual y repetitivo: procesamiento de PDFs, integración con APIs internas de empresas y pequeñas apps web de escritorio.",
+      "about-p2": "La mayoría de mis proyectos nacen de un problema real — un proceso lento en Excel, una descarga manual de documentos, un control de asistencia que nadie revisaba — y los resuelvo de punta a punta: backend en Python, interfaz web simple, y algo de análisis de datos cuando el problema lo pide.",
+      "stack-languages": "Lenguajes",
+      "stack-frameworks": "Frameworks / Librerías",
+      "stack-tools": "Herramientas",
+      "pill-rest-apis": "APIs REST",
+      "pill-rest-api": "API REST",
+      "proj-talana-desc": "Aplicación web en Flask que se conecta a la API de RRHH de Talana para buscar personas por RUT o nombre y descargar en lote sus documentos firmados, en vez de hacerlo uno por uno a mano. Soporta búsqueda masiva pegando listas desde Excel, filtra automáticamente qué documentos corresponden, arma un ZIP organizado por persona y entrega un resumen descargable de los casos que fallaron. Se puede instalar como app de escritorio desde el navegador.",
+      "note-grupocolchagua": "Desarrollado para Grupo Colchagua ↗",
+      "proj-optipdf-desc": "Utilidad que fusiona múltiples PDFs en un único documento y lo comprime de forma agresiva sin perder legibilidad, pensada para cumplir límites estrictos de tamaño de archivo. Corre un pipeline de tres etapas — fusión con pypdf, optimización estructural con qpdf y compresión por fases con Ghostscript — y puede usarse desde línea de comandos o desde una interfaz web local.",
+      "proj-shiftbot-desc": "Bot de automatización (RPA) que carga colaboradores y sus documentos en ShiftLaboral, un sistema externo sin API pública ni carga masiva. A partir de un Excel, compara los datos contra lo ya registrado, crea o edita colaboradores corrigiendo solo los campos que difieren, y sube sus documentos detectando el tipo de archivo automáticamente. Al finalizar genera un reporte Excel coloreado con el detalle de cada caso. Corre sobre una sesión de Chrome iniciada manualmente, sin manejar contraseñas.",
+      "proj-fraud-desc": "Notebook de análisis y modelado orientado a detectar transacciones fraudulentas a partir de datos históricos, explorando el problema típico de clases desbalanceadas en detección de fraude.",
+      "proj-extractor-title": "Extractor Híbrido de PDF",
+      "proj-extractor-desc": "Herramienta en Python para extraer contenido de archivos PDF combinando distintas estrategias de extracción, útil para documentos donde el texto plano no siempre es suficiente.",
+      "proj-cpiel-title": "Cpiel Reloj Control",
+      "proj-cpiel-desc": "Sistema de notificaciones para un reloj control de asistencia: revisa marcajes recientes, descubre el esquema de la base de datos automáticamente y avisa por correo y por popup en escritorio cuando corresponde, para no tener que revisar la asistencia a mano.",
+      "note-cpiel": "Desarrollado para Clínica Dermatológica Piel ↗",
+      "date-piel": "Ago. 2026 – Actual",
+      "title-piel": "Desarrollador de Software (freelance)",
+      "desc-piel": "Desarrollo de un software a medida para la clínica, en paralelo a la práctica en Grupo Colchagua. Proyecto aún en desarrollo.",
+      "date-gc": "Jul. 2026 – Sept. 2026",
+      "title-intern": "Practicante",
+      "desc-gc": "Optimización y automatización de procesos manuales.",
+      "date-cf": "Ago. 2025 – Nov. 2025",
+      "title-cf": "Auditor de Productos / Analista de Datos",
+      "desc-cf": "Diseño, extracción y automatización de reportes analíticos con información crítica para la toma de decisiones estratégicas. Optimización de procesos bajo estrictos acuerdos de nivel de servicio (48-72 horas), mejorando la eficiencia operativa a través del análisis continuo de incidencias y la comunicación interdepartamental.",
+      "date-duoc": "En curso",
+      "title-duoc": "Ingeniería en Informática",
+      "desc-duoc": "Formación enfocada en desarrollo de software, bases de datos y arquitectura de aplicaciones. La mayoría de los proyectos de este portafolio nacieron en paralelo a la carrera, resolviendo problemas reales de automatización.",
+      "date-toeic": "Certificación",
+      "title-toeic": "TOEIC Bridge — Inglés",
+      "desc-toeic": "Puntaje total: 740.",
+      "contact-heading": "¿Conversamos?",
+      "footer-whoami": "whoami — Dunkan Hernández Reyes, Ing. en Informática (Duoc UC)",
+      "footer-updated": "Chile · Última actualización: 2026"
+    },
+    en: {
+      "eyebrow": "Resume / Portfolio",
+      "role": "Computer Engineering Student",
+      "role-sub": "Duoc UC — in progress",
+      "about": "About",
+      "stack": "Stack",
+      "projects": "Projects",
+      "experience": "Experience",
+      "education": "Education",
+      "contact": "Contact",
+      "cv-link": "Download Resume (PDF) ↗",
+      "availability": "Available for internship / first job",
+      "about-p1": "<strong>Computer Engineering Student</strong> at Duoc UC, focused on building tools that automate manual, repetitive work: PDF processing, integration with internal company APIs, and small desktop web apps.",
+      "about-p2": "Most of my projects start from a real problem — a slow Excel process, a manual document download, an attendance log nobody checked — and I solve them end to end: a Python backend, a simple web interface, and some data analysis when the problem calls for it.",
+      "stack-languages": "Languages",
+      "stack-frameworks": "Frameworks / Libraries",
+      "stack-tools": "Tools",
+      "pill-rest-apis": "REST APIs",
+      "pill-rest-api": "REST API",
+      "proj-talana-desc": "Flask web app that connects to Talana's HR API to search people by RUT or name and bulk-download their signed documents, instead of doing it one by one by hand. Supports bulk search by pasting lists from Excel, automatically filters which documents apply, builds a ZIP organized by person, and delivers a downloadable summary of failed cases. Can be installed as a desktop app from the browser.",
+      "note-grupocolchagua": "Developed for Grupo Colchagua ↗",
+      "proj-optipdf-desc": "Utility that merges multiple PDFs into a single document and aggressively compresses it without losing readability, built to meet strict file-size limits. Runs a three-stage pipeline — merging with pypdf, structural optimization with qpdf, and phased compression with Ghostscript — and can be used from the command line or a local web interface.",
+      "proj-shiftbot-desc": "Automation bot (RPA) that loads employees and their documents into ShiftLaboral, an external system with no public API or bulk upload. Starting from an Excel file, it compares the data against what's already registered, creates or edits employees by fixing only the fields that differ, and uploads their documents by automatically detecting the file type. When finished, it generates a color-coded Excel report with the details of each case. It runs on a manually started Chrome session and never handles passwords.",
+      "proj-fraud-desc": "Analysis and modeling notebook aimed at detecting fraudulent transactions from historical data, exploring the classic imbalanced-classes problem in fraud detection.",
+      "proj-extractor-title": "Hybrid PDF Extractor",
+      "proj-extractor-desc": "Python tool for extracting content from PDF files by combining different extraction strategies, useful for documents where plain text isn't always enough.",
+      "proj-cpiel-title": "Cpiel Time Clock Control",
+      "proj-cpiel-desc": "Notification system for a time-and-attendance clock: checks recent clock-ins, automatically discovers the database schema, and alerts by email and desktop popup when needed, so attendance doesn't have to be checked by hand.",
+      "note-cpiel": "Developed for Clínica Dermatológica Piel ↗",
+      "date-piel": "Aug. 2026 – Present",
+      "title-piel": "Software Developer (freelance)",
+      "desc-piel": "Development of custom software for the clinic, in parallel with the internship at Grupo Colchagua. Project still in progress.",
+      "date-gc": "Jul. 2026 – Sep. 2026",
+      "title-intern": "Intern",
+      "desc-gc": "Optimization and automation of manual processes.",
+      "date-cf": "Aug. 2025 – Nov. 2025",
+      "title-cf": "Product Auditor / Data Analyst",
+      "desc-cf": "Design, extraction, and automation of analytical reports with information critical to strategic decision-making. Process optimization under strict service-level agreements (48-72 hours), improving operational efficiency through continuous incident analysis and cross-department communication.",
+      "date-duoc": "In progress",
+      "title-duoc": "Computer Engineering",
+      "desc-duoc": "Training focused on software development, databases, and application architecture. Most of the projects in this portfolio were born alongside my studies, solving real automation problems.",
+      "date-toeic": "Certification",
+      "title-toeic": "TOEIC Bridge — English",
+      "desc-toeic": "Total score: 740.",
+      "contact-heading": "Let's talk?",
+      "footer-whoami": "whoami — Dunkan Hernández Reyes, Computer Engineering (Duoc UC)",
+      "footer-updated": "Chile · Last updated: 2026"
+    }
+  };
+
+  var titles = {
+    es: "Dunkan Hernández Reyes — Portafolio",
+    en: "Dunkan Hernández Reyes — Portfolio"
+  };
+
+  function applyLanguage(lang){
+    if (!translations[lang]) lang = 'es';
+    var dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+    document.documentElement.setAttribute('lang', lang);
+    document.title = titles[lang];
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('portfolio-lang', lang); } catch(e){}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      applyLanguage(btn.getAttribute('data-lang'));
+    });
+  });
+
+  var saved = 'es';
+  try { saved = localStorage.getItem('portfolio-lang') || 'es'; } catch(e){}
+  applyLanguage(saved);
+})();
+</script>
 
 </body>
 </html>
