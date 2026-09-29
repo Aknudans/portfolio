@@ -354,9 +354,84 @@
   }
   a.note:hover{ color:var(--gold); border-color:var(--gold); }
 
+  .mobile-topbar{
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 20px;
+    background:var(--panel-grad);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+  .mobile-topbar .brand{
+    font-family:'Fraunces', serif;
+    font-size:17px;
+    font-weight:500;
+  }
+
+  .hamburger-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.05em;
+    color:var(--ink);
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:8px 12px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .hamburger-btn:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .sidebar-close{
+    display:none;
+    position:absolute;
+    top:16px;
+    right:16px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink-soft);
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:4px 9px;
+    cursor:pointer;
+  }
+  .sidebar-close:hover{ color:var(--gold); border-color:var(--gold); }
+
+  .sidebar-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(10,7,8,.6);
+    z-index:55;
+  }
+  .sidebar-overlay.open{ display:block; }
+
   @media (max-width: 880px){
     .cv-grid{ grid-template-columns:1fr; border-left:none; border-right:none; }
-    .sidebar{ position:relative; height:auto; border-right:none; border-bottom:1px solid var(--line); }
+    .mobile-topbar{ display:flex; }
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:0;
+      height:100vh;
+      width:280px;
+      max-width:82vw;
+      transform:translateX(-100%);
+      transition:transform .25s ease;
+      z-index:60;
+      border-right:1px solid var(--line);
+      border-bottom:none;
+      overflow-y:auto;
+    }
+    .sidebar.open{ transform:translateX(0); }
+    .sidebar-close{ display:block; }
     .main{ padding:48px 24px 0; }
     .stack-groups{ grid-template-columns:1fr 1fr; }
     .project{ grid-template-columns:32px 1fr; }
@@ -393,10 +468,17 @@
 </head>
 <body>
 
+<div class="mobile-topbar">
+  <span class="brand">Dunkan Hernández Reyes</span>
+  <button type="button" class="hamburger-btn" id="menu-toggle" aria-label="Menú">☰ <span data-i18n="menu-label">Menú</span></button>
+</div>
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+
 <div class="cv-grid">
 
   <aside class="sidebar">
     <div class="sidebar-top">
+      <button type="button" class="sidebar-close" id="menu-close" aria-label="Cerrar menú">✕</button>
       <div class="eyebrow" data-i18n="eyebrow">Currículum / Portafolio</div>
       <h1>Dunkan Hernández Reyes</h1>
       <div class="role" data-i18n="role">Estudiante de Ingeniería en Informática</div>
@@ -617,6 +699,7 @@
 (function(){
   var translations = {
     es: {
+      "menu-label": "Menú",
       "eyebrow": "Currículum / Portafolio",
       "role": "Estudiante de Ingeniería en Informática",
       "role-sub": "Duoc UC — en curso",
@@ -662,6 +745,7 @@
       "footer-updated": "Chile · Última actualización: 2026"
     },
     en: {
+      "menu-label": "Menu",
       "eyebrow": "Resume / Portfolio",
       "role": "Computer Engineering Student",
       "role-sub": "Duoc UC — in progress",
@@ -737,6 +821,29 @@
   var saved = 'es';
   try { saved = localStorage.getItem('portfolio-lang') || 'es'; } catch(e){}
   applyLanguage(saved);
+
+  var menuToggle = document.getElementById('menu-toggle');
+  var menuClose = document.getElementById('menu-close');
+  var sidebarEl = document.querySelector('.sidebar');
+  var overlayEl = document.getElementById('sidebar-overlay');
+
+  function openMenu(){
+    sidebarEl.classList.add('open');
+    overlayEl.classList.add('open');
+  }
+  function closeMenu(){
+    sidebarEl.classList.remove('open');
+    overlayEl.classList.remove('open');
+  }
+  if (menuToggle) menuToggle.addEventListener('click', openMenu);
+  if (menuClose) menuClose.addEventListener('click', closeMenu);
+  if (overlayEl) overlayEl.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') closeMenu();
+  });
+  document.querySelectorAll('.sidebar nav a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
 })();
 </script>
 
